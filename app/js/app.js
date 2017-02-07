@@ -10,7 +10,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="mdl-base mdl-layout__container">
         <Header />
         <Footer />
       </div>
