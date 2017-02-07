@@ -1,11 +1,11 @@
 import React from 'react';
 
 export class App extends React.Component {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    render() {
-        return (<div>Hello World</div>);
-    }
+  render() {
+    return (<div>Hello World</div>);
+  }
 }
