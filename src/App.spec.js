@@ -2,9 +2,9 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { App } from './app';
-import { Header } from './views/header';
-import { Footer } from './views/footer';
+import { App } from './App';
+import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
 
 let component;
 

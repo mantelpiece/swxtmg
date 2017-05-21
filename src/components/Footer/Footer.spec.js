@@ -2,7 +2,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { Footer } from './footer';
+import { Footer } from './Footer';
 
 let component;
 
@@ -10,7 +10,7 @@ test.beforeEach(() => {
   component = shallow(<Footer />);
 });
 
-test('should be a div', t => {
+test('should be a footer', t => {
   t.is(component.type(), 'footer');
 });
 

@@ -25,21 +25,22 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "css-loader": "^0.26.1",
-    "enzyme": "^2.7.1",
+    "enzyme": "^2.8.2",
     "eslint": "^3.15.0",
     "eslint-plugin-react": "^6.9.0",
-    "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.5.4",
+    "react-test-utils": "0.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
   "ava": {
     "files": [
-      "./app/**/*.spec.js"
+      "./src/**/*.spec.js"
     ],
     "source": [
-      "./app/**/*.js",
-      "!./app/**/*.spec.js"
+      "./src/**/*.js",
+      "!./src/**/*.spec.js"
     ],
     "require": [
       "babel-register"
