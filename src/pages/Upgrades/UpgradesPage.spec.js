@@ -3,25 +3,49 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 import { UpgradesPage } from './UpgradesPage';
-import { getAllUpgrades } from '../../services/upgradesService';
 
 let component;
-
 test.beforeEach(() => {
-  component = shallow(<UpgradesPage />);
+  component = shallow(<UpgradesPage allUpgrades={[]}/>);
 });
 
 test('should be a section', t => {
   t.is(component.type(), 'section');
 });
 
-test.skip('should have a search thingo', () => {
+test('should have a search bar', t => {
+  t.is(component.find('.upgrade-search').exists(), true);
+});
+
+test('should set a searchPhrase state property', t => {
+  const searchBarInput = component.find('#upgradeSearchBar');
+  searchBarInput.prop('onChange')({ target: { value: 'search' }});
+  component.update();
+  t.is(component.state('searchPhrase'), 'search');
 });
 
 test('should render an Upgrades list', t => {
   t.is(component.children('UpgradeList').length, 1);
 });
 
-test('should pass all the upgrades to the list TEMPORARILY', t => {
-  t.deepEqual(component.children('UpgradeList').prop('upgrades'), getAllUpgrades());
+test('should pass an array of upgrades to the Upgrades list', t => {
+  const upgrades = [];
+  component.setProps({ allUpgrades: upgrades });
+  const upgradeList = component.find('UpgradeList');
+  t.is(upgradeList.prop('upgrades'), upgrades);
+});
+
+test('should filter the passed upgrades based on the search phrase', t => {
+  const searchBar = component.find('#upgradeSearchBar');
+  component.setProps({
+    allUpgrades: [
+      { keywords: ['yes'], name: 'yes' },
+      { keywords: ['no'], name: 'no'}
+    ]
+  });
+  searchBar.prop('onChange')({ target: { value: 'yes' }});
+  component.update();
+  const upgradeList = component.find('UpgradeList');
+  t.is(upgradeList.prop('upgrades').length, 1);
+  t.is(upgradeList.prop('upgrades')[0].name, 'yes');
 });
