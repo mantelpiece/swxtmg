@@ -43,7 +43,6 @@ export class UpgradesPage extends Component {
       <section>
         <h2>Upgrades</h2>
         {this.renderSearchBar()}
-        {this.state.searchPhrase}
 
         <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)} />
       </section>
