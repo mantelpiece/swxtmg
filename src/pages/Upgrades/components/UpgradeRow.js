@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 export class UpgradeRow extends Component {
   render() {
     return (
-      <tr><td>{this.props.name}</td><td>{this.props.cost}</td></tr> 
+      <tr>
+        <td className="mdl-data-table__cell--non-numeric upgrade-row-name-cell">{this.props.name}</td>
+        <td className="upgrade-row-cost-cell">{this.props.cost}</td>
+      </tr>
     );
   }
 }

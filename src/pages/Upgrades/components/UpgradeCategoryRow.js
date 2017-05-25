@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export class UpgradeCategoryRow extends Component {
   render() {
     return (
-      <tr><th colSpan="2">{this.props.category}</th></tr> 
+      <tr><th className='mdl-data-table__cell--non-numeric' colSpan="2">{this.props.category}</th></tr>
     );
   }
 }

@@ -5,6 +5,8 @@ import { UpgradeCategoryRow } from './UpgradeCategoryRow';
 import { UpgradeRow } from './UpgradeRow';
 import { Upgrade } from '../../../services/upgradesService';
 
+import './styles.css';
+
 export class UpgradeList extends Component {
 
   render() {
@@ -19,10 +21,10 @@ export class UpgradeList extends Component {
     });
 
     return (
-      <table className='swx-upgrade-table'>
+      <table className='swx-upgrade-table mdl-data-table mdl-js-data-table'>
         <thead>
           <tr>
-            <th>Name</th>
+            <th className='mdl-data-table__cell--non-numeric'>Name</th>
             <th>Cost</th>
           </tr>
         </thead>
