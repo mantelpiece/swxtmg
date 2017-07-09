@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 
 import { UpgradeList } from './components/UpgradeList';
+import { UpgradeCard } from './components/UpgradeCard/UpgradeCard';
 import { filterUpgrades, getAllUpgrades, Upgrade } from '../../services/upgradesService';
 
 export class UpgradesPage extends Component {
@@ -29,7 +30,12 @@ export class UpgradesPage extends Component {
   }
 
   handleSelectUpgrade(id) {
-    this.setState({ selectedUpgrade: id });
+    const card = this.props.allUpgrades.find((card) => {
+      return card.id === id;
+    });
+    this.setState({
+      selectedUpgrade: card
+    });
   }
 
   renderSearchBar() {
@@ -45,6 +51,15 @@ export class UpgradesPage extends Component {
     );
   }
 
+  renderCardDetailView() {
+    if (!this.state.selectedUpgrade) {
+      return;
+    }
+    return (
+      <UpgradeCard card={this.state.selectedUpgrade}/>
+    );
+  }
+
   render() {
     return (
       <section>
@@ -53,6 +68,8 @@ export class UpgradesPage extends Component {
 
         <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
                      selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
+
+        {this.renderCardDetailView()}
       </section>
     );
   }

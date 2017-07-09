@@ -49,3 +49,13 @@ test('should filter the passed upgrades based on the search phrase', t => {
   t.is(upgradeList.prop('upgrades').length, 1);
   t.is(upgradeList.prop('upgrades')[0].name, 'yes');
 });
+
+test('should not render a UpgradeCard detail view when an upgrade is not selected', t => {
+  component.setState({ selectedUpgrade: null });
+  t.is(component.find('UpgradeCard').exists(), false);
+});
+
+test('should render a UpgradeCard when an upgrade is selected', t => {
+  component.setState({ selectedUpgrade: { id: 'some-id', name: 'yes' }});
+  t.is(component.find('UpgradeCard').exists(), true);
+});
