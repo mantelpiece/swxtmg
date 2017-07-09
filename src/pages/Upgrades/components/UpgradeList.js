@@ -9,6 +9,10 @@ import './styles.css';
 
 export class UpgradeList extends Component {
 
+  handleClick() {
+    return this.props.selectUpgradeFn();
+  }
+
   render() {
     const rows = [];
     let lastCategory = '';
@@ -16,7 +20,7 @@ export class UpgradeList extends Component {
       if (lastCategory !== upgrade.category) {
         rows.push(<UpgradeCategoryRow key={upgrade.category} category={upgrade.category} />);
       }
-      rows.push(<UpgradeRow key={upgrade.name} {...upgrade} />);
+      rows.push(<UpgradeRow key={upgrade.id} {...upgrade} handleOnClick={this.props.selectUpgradeFn} />);
       lastCategory = upgrade.category;
     });
 
@@ -37,5 +41,6 @@ export class UpgradeList extends Component {
 }
 
 UpgradeList.propTypes = {
-  upgrades: PropTypes.arrayOf(PropTypes.shape(Upgrade)).isRequired
+  upgrades: PropTypes.arrayOf(PropTypes.shape(Upgrade)).isRequired,
+  selectUpgradeFn: PropTypes.func.isRequired
 };

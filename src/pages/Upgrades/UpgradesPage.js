@@ -7,7 +7,10 @@ import { filterUpgrades, getAllUpgrades, Upgrade } from '../../services/upgrades
 export class UpgradesPage extends Component {
 
   initialState() {
-    return { searchPhrase: '' };
+    return {
+      searchPhrase: '',
+      selectedUpgrade: undefined
+    };
   }
 
   constructor() {
@@ -23,6 +26,10 @@ export class UpgradesPage extends Component {
   handleChange(event) {
     const searchPhrase = event.target.value;
     this.setState({ searchPhrase: searchPhrase });
+  }
+
+  handleSelectUpgrade(id) {
+    this.setState({ selectedUpgrade: id });
   }
 
   renderSearchBar() {
@@ -44,7 +51,8 @@ export class UpgradesPage extends Component {
         <h2>Upgrades</h2>
         {this.renderSearchBar()}
 
-        <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)} />
+        <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
+                     selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
       </section>
     );
   }

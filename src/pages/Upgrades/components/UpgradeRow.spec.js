@@ -1,13 +1,14 @@
 import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
+import sinon from 'sinon';
 
 import { UpgradeRow } from './UpgradeRow';
 
 let component;
 
 test.beforeEach(() => {
-  component = shallow(<UpgradeRow name="Name" cost="Cost"/>);
+  component = shallow(<UpgradeRow id="id" name="Name" cost="Cost" handleOnClick={() => {}}/>);
 });
 
 test('should be a table row', t => {
@@ -24,4 +25,16 @@ test('should render the name prop in the first columm', t => {
 
 test('should render the cost prop in the second columm', t => {
   t.is(component.children('td').at(1).text(), 'Cost');
+});
+
+
+test('should call the passed in click handler when the user clicks on a row', t => {
+  const spy = sinon.spy();
+  component.setProps({
+    handleOnClick: spy
+  });
+
+  component.find('tr').simulate('click');
+  t.is(spy.callCount, 1);
+  t.is(spy.firstCall.args[0], 'id');
 });

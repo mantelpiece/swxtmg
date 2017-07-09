@@ -8,7 +8,7 @@ import { UpgradeCategoryRow } from './UpgradeCategoryRow';
 
 let component;
 test.beforeEach(() => {
-  component = shallow(<UpgradeList upgrades={[]}/>);
+  component = shallow(<UpgradeList upgrades={[]} selectUpgradeFn={() => {}}/>);
 });
 
 test('should be a table', t => {
@@ -18,9 +18,9 @@ test('should be a table', t => {
 test('should render all upgrades by default', t => {
   component.setProps({
     upgrades: [
-      { category: '1', name: '1', cost: '2' },
-      { category: '1', name: '1', cost: '2' },
-      { category: '1', name: '1', cost: '2' }
+      { id: 'id1', category: '1', name: '1', cost: '2' },
+      { id: 'id2', category: '1', name: '1', cost: '2' },
+      { id: 'id3', category: '1', name: '1', cost: '2' }
     ]
   });
   t.is(component.find('UpgradeRow').length, 3);
@@ -29,6 +29,7 @@ test('should render all upgrades by default', t => {
 test('should render a single upgrade within a single category row', t => {
   component.setProps({upgrades: [{
     category: 'category 1',
+    id: 'id1',
     name: 'name 1',
     cost: 'cost 1'
   }]});
@@ -43,10 +44,12 @@ test('should render a single upgrade within a single category row', t => {
 
 test('should render single upgrades with different categories', t => {
   component.setProps({upgrades: [{
+    id: 'id1',
     category: 'category 1',
     name: 'name 1',
     cost: 'cost 1'
   }, {
+    id: 'id2',
     name: 'name 2',
     cost: 'cost 2',
     category: 'category 2'
