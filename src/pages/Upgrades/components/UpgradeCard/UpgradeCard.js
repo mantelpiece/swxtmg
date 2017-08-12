@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Upgrade } from '../../../../services/upgradesService.js';
 
+import './styles.css';
+
 export class UpgradeCard extends Component {
   constructor() {
     super();
@@ -10,15 +12,19 @@ export class UpgradeCard extends Component {
 
   render() {
     return (
-      <div className='card upgrade'>
-        <div className='upgrade-name'>{this.props.card.name}</div>
-        <div className='upgrade-category'>{this.props.card.category}</div>
-        <div className='upgrade-cost'>{this.props.card.cost}</div>
-        <div className='upgrade-flavorText'>{this.props.card.flavourText}</div>
-        <div className='upgrade-description'>{this.props.card.description}</div>
-        <div className='upgrade-factions'>{this.props.card.factions}</div>
-        <div className='upgrade-pilots'>{this.props.card.pilots}</div>
-        <div className='upgrade-expansions'>{this.props.card.expansions}</div>
+      <div className='mdl-card mdl-shadow--2dp'>
+        <div className='mdl-card__title'>
+          <h4 className='mdl-card__title-text'>{this.props.card.name}</h4>
+        </div>
+        <div className='mdl-card__supporting-text'>
+          <div className='upgrade-category'>{this.props.card.category}</div>
+          <div className='upgrade-cost'>{this.props.card.cost}</div>
+          <div className='upgrade-flavorText'>{this.props.card.flavourText}</div>
+          <div className='upgrade-description'>{this.props.card.description}</div>
+          <div className='upgrade-factions'>{this.props.card.factions}</div>
+          <div className='upgrade-pilots'>{this.props.card.pilots}</div>
+          <div className='upgrade-expansions'>{this.props.card.expansions}</div>
+        </div>
       </div>
     );
   }

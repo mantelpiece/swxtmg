@@ -2,7 +2,11 @@ export const upgradeCards = [{
   id: 'st',
   name: 'Swarm Tactics',
   category: 'Elite pilot talent',
-  cost: '2'
+  cost: '2',
+  description: '',
+  factions: [],
+  pilots: [],
+  expansions: []
 }, {
   id: 'vi',
   name: 'Veteran Instincts',

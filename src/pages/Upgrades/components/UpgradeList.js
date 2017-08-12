@@ -28,8 +28,8 @@ export class UpgradeList extends Component {
       <table className='swx-upgrade-table mdl-data-table mdl-js-data-table'>
         <thead>
           <tr>
-            <th className='mdl-data-table__cell--non-numeric'>Name</th>
-            <th>Cost</th>
+            <th className='mdl-data-table__cell--non-numeric upgrade-row-name-cell'>Name</th>
+            <th className='upgrade-row-cost-cell'>Cost</th>
           </tr>
         </thead>
         <tbody>

@@ -41,12 +41,15 @@ export class UpgradesPage extends Component {
   renderSearchBar() {
     return (
       <div className="upgrade-search">
-          <form>
-            <input type="text"
+        <form action="#">
+          <div className="mdl-textfield mdl-js-textfield">
+            <input className="mdl-textfield__input"
+                   type="text"
                    id="upgradeSearchBar"
                    onChange={this.handleChange}
-                   placeholder="Search upgrades" />
-          </form>
+                   placeholder="Search..." />
+          </div>
+        </form>
       </div>
     );
   }
@@ -65,10 +68,9 @@ export class UpgradesPage extends Component {
       <section>
         <h2>Upgrades</h2>
         {this.renderSearchBar()}
-
         <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
                      selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
-
+        <br />
         {this.renderCardDetailView()}
       </section>
     );
