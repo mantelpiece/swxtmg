@@ -20,8 +20,12 @@ export function filterUpgrades(upgrades: Upgrade[], query: string): Upgrade[] {
   if (!query || query === '') {
     return upgrades;
   }
-  const queryTerms = query.toLowerCase().split(/\s+/);
 
+  if (!upgrades) {
+    throw new Error('No upgrades passed to filterUpgrades');
+  }
+
+  const queryTerms = query.toLowerCase().split(/\s+/);
   return upgrades.filter((upgrade: Upgrade): boolean => {
     return queryTerms.every((queryTerm: string): boolean => {
       return upgrade.keywords.some((keyword: string): boolean => {

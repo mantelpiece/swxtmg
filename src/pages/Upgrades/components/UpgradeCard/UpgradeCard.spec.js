@@ -11,7 +11,7 @@ const upgradeCard = {
 };
 
 test.beforeEach(() => {
-  component = shallow(<UpgradeCard card={upgradeCard}/>);
+  component = shallow(<UpgradeCard card={upgradeCard} closeCardFn={() => {}}/>);
 });
 
 test('should be a div', t => {

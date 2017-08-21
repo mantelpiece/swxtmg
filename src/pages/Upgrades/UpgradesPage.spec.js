@@ -25,7 +25,7 @@ test('should set a searchPhrase state property', t => {
 });
 
 test('should render an Upgrades list', t => {
-  t.is(component.children('UpgradeList').length, 1);
+  t.is(component.find('UpgradeList').exists(), true);
 });
 
 test('should pass an array of upgrades to the Upgrades list', t => {
@@ -58,4 +58,39 @@ test('should not render a UpgradeCard detail view when an upgrade is not selecte
 test('should render a UpgradeCard when an upgrade is selected', t => {
   component.setState({ selectedUpgrade: { id: 'some-id', name: 'yes' }});
   t.is(component.find('UpgradeCard').exists(), true);
+});
+
+test('changing the searchPhrase should clear the selected upgrade', t => {
+  const upgrade = {id: 'some-id', keywords: ['some-id']};
+  component.setProps({allUpgrades: [ upgrade ]});
+  component.setState({selectedUpgrade: upgrade});
+  t.is(component.find('UpgradeCard').exists(), true);
+  const searchBar = component.find('#upgradeSearchBar');
+  searchBar.prop('onChange')({ target: { value: 'should not match' }});
+  t.is(component.find('UpgradeCard').exists(), false);
+});
+
+test('changing the searchPhrase should not clear the selected upgrade if it matches', t => {
+  const upgrade = {id: 'some-id', keywords: ['some-id']};
+  component.setProps({allUpgrades: [ upgrade ]});
+  component.setState({selectedUpgrade: upgrade});
+  t.is(component.find('UpgradeCard').exists(), true);
+  const searchBar = component.find('#upgradeSearchBar');
+  searchBar.prop('onChange')({ target: { value: 'some-id' }});
+  t.is(component.find('UpgradeCard').exists(), true);
+  t.is(component.state().selectedUpgrade, upgrade);
+});
+
+test('changing the searchPhrase should select a card if it is the only matching card', t => {
+  const upgrades = [
+    {id: 'some-id1', keywords: ['hello', 'shared']},
+    {id: 'some-id2', keywords: ['goodbye', 'shared']},
+    {id: 'some-id3', keywords: ['banana', 'shared']}
+  ];
+  component.setProps({allUpgrades: upgrades});
+  const searchBar = component.find('#upgradeSearchBar');
+  searchBar.prop('onChange')({ target: { value: 'shared' }});
+  t.is(component.state().selectedUpgrade, null);
+  searchBar.prop('onChange')({ target: { value: 'hello' }});
+  t.is(component.state().selectedUpgrade, upgrades[0]);
 });

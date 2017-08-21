@@ -10,7 +10,7 @@ export class UpgradesPage extends Component {
   initialState() {
     return {
       searchPhrase: '',
-      selectedUpgrade: undefined
+      selectedUpgrade: null
     };
   }
 
@@ -27,6 +27,18 @@ export class UpgradesPage extends Component {
   handleChange(event) {
     const searchPhrase = event.target.value;
     this.setState({ searchPhrase: searchPhrase });
+    if (this.state.selectedUpgrade) {
+      // If something is selected, de-select it if doesn't match.
+      if (filterUpgrades([ this.state.selectedUpgrade ], searchPhrase).length === 0) {
+        this.handleSelectUpgrade(null);
+      }
+    } else {
+      // If nothing is selected, and there is only one match select it.
+      const filteredUpgrades = filterUpgrades(this.props.allUpgrades, searchPhrase);
+      if (filteredUpgrades.length === 1) {
+        this.handleSelectUpgrade(filteredUpgrades[0].id);
+      }
+    }
   }
 
   handleSelectUpgrade(id) {
