@@ -1,7 +1,3 @@
-.upgrade-row-name-cell {
-    min-width: 20rem;
-}
-
-.upgrade-row-cost-cell {
-    min-width: 4rem;
+.upgrade-table {
+  width: 100%;
 }

@@ -25,7 +25,7 @@ export class UpgradeList extends Component {
     });
 
     return (
-      <table className='swx-upgrade-table mdl-data-table mdl-js-data-table'>
+      <table className='upgrade-table mdl-data-table mdl-js-data-table'>
         <thead>
           <tr>
             <th className='mdl-data-table__cell--non-numeric upgrade-row-name-cell'>Name</th>

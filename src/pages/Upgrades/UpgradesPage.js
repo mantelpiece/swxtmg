@@ -59,19 +59,25 @@ export class UpgradesPage extends Component {
       return;
     }
     return (
-      <UpgradeCard card={this.state.selectedUpgrade}/>
+      <UpgradeCard card={this.state.selectedUpgrade} closeCardFn={this.handleSelectUpgrade.bind(this, null)}/>
     );
   }
 
   render() {
     return (
-      <section>
-        <h2>Upgrades</h2>
-        {this.renderSearchBar()}
-        <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
-                     selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
-        <br />
-        {this.renderCardDetailView()}
+      <section className='mdl-grid'>
+        <div className='mdl-cell mdl-cell--12-col'>
+          <h2>Upgrades</h2>
+          {this.renderSearchBar()}
+        </div>
+
+        <div className='mdl-cell mdl-cell--6-col'>
+          <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
+                       selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
+        </div>
+        <div className='mdl-cell'>
+          {this.renderCardDetailView()}
+        </div>
       </section>
     );
   }
