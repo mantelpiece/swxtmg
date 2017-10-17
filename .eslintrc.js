@@ -30,6 +30,7 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "react/prop-types": [ 1 ] // warning for missing/incorrect proptypes definition.
     }
 };

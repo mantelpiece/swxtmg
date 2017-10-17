@@ -1,4 +1,5 @@
-import { upgradeCards } from './upgradeCards';
+// File excluded from repository temporarily
+import { upgrades } from './upgrades';
 import { generateKeywords } from '../utils/textUtils';
 
 export type Upgrade = {
@@ -8,12 +9,12 @@ export type Upgrade = {
   keywords: string[]
 };
 
-upgradeCards.forEach(card => {
+upgrades.forEach(card => {
   card.keywords = generateKeywords(card.name);
 });
 
 export function getAllUpgrades(): Upgrade[] {
-  return upgradeCards;
+  return upgrades;
 }
 
 export function filterUpgrades(upgrades: Upgrade[], query: string): Upgrade[] {
