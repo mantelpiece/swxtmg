@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class UpgradeRow extends Component {
+export default class UpgradeRow extends Component {
   render() {
     return (
       <tr onClick={this.props.handleOnClick.bind(null, this.props.id)}>

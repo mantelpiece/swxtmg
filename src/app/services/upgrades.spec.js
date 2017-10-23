@@ -1,7 +1,7 @@
 import test, { beforeEach } from 'ava';
 
-import { generateKeywords } from '../utils/textUtils';
-import { filterUpgrades, getAllUpgrades, Upgrade } from './upgradesService';
+import { generateKeywords } from '../lib/textUtils';
+import { filterUpgrades, getAllUpgrades, Upgrade } from './upgrades';
 
 export const upgrades: Upgrade[] = [{
   id: 'st',

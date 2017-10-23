@@ -2,7 +2,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { Footer } from './Footer';
+import Footer from './footer';
 
 let component;
 

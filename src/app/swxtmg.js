@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import { Header } from './components/Header/Header';
-import { Footer } from './components/Footer/Footer';
-import { UpgradesPage } from './pages/Upgrades/UpgradesPage';
+import Header from './core/header/header';
+import Footer from './core/footer/footer';
+import UpgradesListContainer from './upgrade-list/upgrade-list-container';
 
-export class App extends Component {
+export default class Swxtmg extends Component {
   constructor() {
     super();
   }
@@ -16,7 +16,7 @@ export class App extends Component {
         <main className="mdl-layout-content">
           <div className="mdl-grid">
             <div className="mdl-cell mdl-cell--12-col">
-              <UpgradesPage />
+              <UpgradesListContainer />
             </div>
           </div>
         </main>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { UpgradeCategoryRow } from './UpgradeCategoryRow';
-import { UpgradeRow } from './UpgradeRow';
-import { Upgrade } from '../../../services/upgradesService';
+import UpgradeCategoryRow from './upgrade-category-row';
+import UpgradeRow from './upgrade-row';
+import { Upgrade } from '../../services/upgrades';
 
 import './styles.css';
 
-export class UpgradeList extends Component {
+export default class UpgradeList extends Component {
 
   handleClick() {
     return this.props.selectUpgradeFn();

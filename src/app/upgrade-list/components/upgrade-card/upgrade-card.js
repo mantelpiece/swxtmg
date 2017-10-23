@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Upgrade } from '../../../../services/upgradesService.js';
+import { Upgrade } from '../../../services/upgrades';
 
 import './styles.css';
 
-export class UpgradeCard extends Component {
+export default class UpgradeCard extends Component {
   constructor() {
     super();
   }

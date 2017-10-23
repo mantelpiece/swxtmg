@@ -2,7 +2,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { UpgradeCard } from './UpgradeCard';
+import UpgradeCard from './upgrade-card';
 
 let component;
 

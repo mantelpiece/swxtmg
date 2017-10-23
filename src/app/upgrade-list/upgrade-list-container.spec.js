@@ -2,11 +2,11 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { UpgradesPage } from './UpgradesPage';
+import UpgradeListContainer from './upgrade-list-container';
 
 let component;
 test.beforeEach(() => {
-  component = shallow(<UpgradesPage allUpgrades={[]}/>);
+  component = shallow(<UpgradeListContainer allUpgrades={[]}/>);
 });
 
 test('should be a section', t => {

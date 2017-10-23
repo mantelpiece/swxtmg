@@ -2,7 +2,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { Header } from './Header';
+import Header from './header';
 
 let component;
 

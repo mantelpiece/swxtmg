@@ -2,7 +2,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { UpgradeCategoryRow } from './UpgradeCategoryRow';
+import UpgradeCategoryRow from './upgrade-category-row';
 
 let component;
 

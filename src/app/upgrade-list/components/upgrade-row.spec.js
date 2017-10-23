@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import { UpgradeRow } from './UpgradeRow';
+import UpgradeRow from './upgrade-row';
 
 let component;
 

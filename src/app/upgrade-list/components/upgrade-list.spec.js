@@ -2,9 +2,9 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { UpgradeList } from './UpgradeList';
-import { UpgradeRow } from './UpgradeRow';
-import { UpgradeCategoryRow } from './UpgradeCategoryRow';
+import UpgradeList from './upgrade-list';
+import UpgradeRow from './upgrade-row';
+import UpgradeCategoryRow from './upgrade-category-row';
 
 let component;
 test.beforeEach(() => {

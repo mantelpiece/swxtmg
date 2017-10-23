@@ -1,6 +1,7 @@
 // File excluded from repository temporarily
-import { upgrades } from './upgrades';
-import { generateKeywords } from '../utils/textUtils';
+import { upgrades } from './upgrades-data';
+
+import { generateKeywords } from '../lib/textUtils';
 
 export type Upgrade = {
   id: string,

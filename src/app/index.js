@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { App } from './App';
+import App from './swxtmg';
 
 import 'material-design-lite/material.min.css';
 import 'material-design-lite/material.min.js';

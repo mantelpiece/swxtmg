@@ -1,11 +1,11 @@
 import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 
-import { UpgradeList } from './components/UpgradeList';
-import { UpgradeCard } from './components/UpgradeCard/UpgradeCard';
-import { filterUpgrades, getAllUpgrades, Upgrade } from '../../services/upgradesService';
+import UpgradeList from './components/upgrade-list';
+import UpgradeCard from './components/upgrade-card/upgrade-card';
+import { filterUpgrades, getAllUpgrades, Upgrade } from '../services/upgrades';
 
-export class UpgradesPage extends Component {
+export default class UpgradesPage extends Component {
 
   initialState() {
     return {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Header extends React.Component {
+export default class Header extends React.Component {
   constructor() {
     super();
   }
