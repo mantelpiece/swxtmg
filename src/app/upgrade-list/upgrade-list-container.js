@@ -59,7 +59,7 @@ export default class UpgradesPage extends Component {
                    type="text"
                    id="upgradeSearchBar"
                    onChange={this.handleChange}
-                   placeholder="Search..." />
+                   placeholder="Search upgrades" />
           </div>
         </form>
       </div>
@@ -79,7 +79,6 @@ export default class UpgradesPage extends Component {
     return (
       <section className='mdl-grid'>
         <div className='mdl-cell mdl-cell--12-col'>
-          <h2>Upgrades</h2>
           {this.renderSearchBar()}
         </div>
 
