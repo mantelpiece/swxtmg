@@ -1,0 +1,20 @@
+.category-selector .mdl-chip {
+  margin-right: 5px;
+}
+
+.category-selector .mdl-chip.active {
+  background: #4D4;
+}
+
+/*
+.category-selector .mdl-chip__text {
+  font-size: 0.8rem;
+}
+
+.category-selector .mdl-chip__contact {
+  height: unset;
+  width: unset;
+  font-size: 1.2rem;
+}
+*/
+

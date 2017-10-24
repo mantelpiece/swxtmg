@@ -13,7 +13,10 @@ module.exports = {
     modules: [
       path.resolve('./src/app/'),
       'node_modules'
-    ]
+    ],
+    alias: {
+      'XWingMiniaturesFont.css$': path.resolve(path.join(__dirname, 'node_modules', 'xwing-miniatures-font', 'dist', 'xwing-miniatures.css'))
+    }
   },
   module: {
     rules: [
@@ -29,6 +32,11 @@ module.exports = {
         use: [
           { loader: 'style-loader', },
           { loader: 'css-loader' }
+        ]
+      }, {
+        test: /\.ttf$/,
+        use: [
+          { loader: 'file-loader' }
         ]
       }
     ]
