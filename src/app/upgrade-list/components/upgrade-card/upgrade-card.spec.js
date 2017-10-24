@@ -7,7 +7,10 @@ import UpgradeCard from './upgrade-card';
 let component;
 
 const upgradeCard = {
-  name: 'name'
+  name: 'name',
+  text: 'text',
+  category: 'category',
+  cost: '0'
 };
 
 test.beforeEach(() => {
@@ -20,11 +23,20 @@ test('should be a div', t => {
 
 test('should have some contents', t => {
   t.is(component.find('.upgrade-name').exists(), true);
+  t.is(component.find('.upgrade-name').text(), 'name');
+
   t.is(component.find('.upgrade-category').exists(), true);
-  t.is(component.find('.upgrade-description').exists(), true);
+  t.is(component.find('.upgrade-category').text(), 'category');
+
   t.is(component.find('.upgrade-cost').exists(), true);
-  t.is(component.find('.upgrade-factions').exists(), true);
-  t.is(component.find('.upgrade-pilots').exists(), true);
-  t.is(component.find('.upgrade-expansions').exists(), true);
+  t.is(component.find('.upgrade-cost').text(), 'Cost: 0');
+
+  t.is(component.find('.upgrade-text').exists(), true);
+  t.is(component.find('.upgrade-text').text(), 'text');
 });
 
+test('should replace the Action header', t => {
+  component.setProps({card: { text: 'Action: Do the thing' }});
+  const upgradeText = component.find('.upgrade-text').childAt(0);
+  t.is(upgradeText.html(), '<p><b>Action:</b> Do the thing</p>');
+});

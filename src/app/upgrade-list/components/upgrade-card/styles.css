@@ -1,3 +1,12 @@
-.upgrade-category {
+.upgrade-card__title {
+  background: #aaa;
+}
+
+.upgrade-card__sub-title {
   font-variant: small-caps;
-};
+  font-size: 1.2rem;
+}
+
+.upgrade-cost {
+  text-align: right;
+}

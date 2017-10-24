@@ -10,26 +10,34 @@ export default class UpgradeCard extends Component {
     super();
   }
 
+  renderDescription() {
+    const text = this.props.card.text;
+    const actionHeaderRegex = /^Action:/i;
+    if (actionHeaderRegex.test(text)) {
+      const modifiedText = text.replace(actionHeaderRegex, '');
+      return (<p><b>Action:</b>{modifiedText}</p>);
+    } else {
+      return (<p>{this.props.card.text}</p>);
+    }
+  }
+
   render() {
+    const renderedDescription = this.renderDescription();
     return (
       <div className='mdl-card mdl-shadow--2dp'>
-        <div className='mdl-card__title'>
+        <div className='mdl-card__title upgrade-card__title'>
           <h4 className='mdl-card__title-text upgrade-name'>{this.props.card.name}</h4>
         </div>
 
-        <div className='mdl-card__supporting-text mdl-grid mdl-grid--no-spacing'>
-          <div className='mdl-cell mdl-cell--12-col'>
-            <span className='upgrade-category'>{this.props.card.category}</span>
+        <div className='mdl-card__supporting-text'>
+          <div className='mdl-grid mdl-grid--no-spacing upgrade-card__sub-title'>
+            <div className='mdl-cell mdl-cell--6-col upgrade-category'>{this.props.card.category}</div>
+            <div className='mdl-cell mdl-cell--6-col upgrade-cost'>Cost: {this.props.card.cost}</div>
           </div>
-          <div className='mdl-cell mdl-cell--12-col'>
-            <span className='upgrade-cost'>Cost: {this.props.card.cost}</span>
+          <br />
+          <div className='mdl-grid--no-spacing'>
+            <div className='upgrade-text'>{renderedDescription}</div>
           </div>
-
-          <div className='upgrade-flavorText'>{this.props.card.flavourText}</div>
-          <div className='upgrade-description'>{this.props.card.description}</div>
-          <div className='upgrade-factions'>{this.props.card.factions}</div>
-          <div className='upgrade-pilots'>{this.props.card.pilots}</div>
-          <div className='upgrade-expansions'>{this.props.card.expansions}</div>
         </div>
 
         <div className='mdl-card__menu'>
