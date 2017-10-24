@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import UpgradeList from './components/upgrade-list';
 import UpgradeCard from './components/upgrade-card/upgrade-card';
+import SearchBar from './components/search-bar/search-bar';
 import { filterUpgrades, getAllUpgrades, Upgrade } from '../services/upgrades';
 
 export default class UpgradesPage extends Component {
@@ -17,14 +18,15 @@ export default class UpgradesPage extends Component {
   constructor() {
     super();
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleSelectUpgrade = this.handleSelectUpgrade.bind(this);
   }
 
   componentWillMount() {
     this.setState(this.initialState());
   }
 
-  handleChange(event) {
+  handleSearch(event) {
     const searchPhrase = event.target.value;
     this.setState({ searchPhrase: searchPhrase });
     if (this.state.selectedUpgrade) {
@@ -50,22 +52,6 @@ export default class UpgradesPage extends Component {
     });
   }
 
-  renderSearchBar() {
-    return (
-      <div className="upgrade-search">
-        <form action="#">
-          <div className="mdl-textfield mdl-js-textfield">
-            <input className="mdl-textfield__input"
-                   type="text"
-                   id="upgradeSearchBar"
-                   onChange={this.handleChange}
-                   placeholder="Search upgrades" />
-          </div>
-        </form>
-      </div>
-    );
-  }
-
   renderCardDetailView() {
     if (!this.state.selectedUpgrade) {
       return;
@@ -79,7 +65,7 @@ export default class UpgradesPage extends Component {
     return (
       <section className='mdl-grid'>
         <div className='mdl-cell mdl-cell--12-col'>
-          {this.renderSearchBar()}
+          <SearchBar onChange={this.handleSearch} />
         </div>
 
         <div className='mdl-cell mdl-cell--6-col'>

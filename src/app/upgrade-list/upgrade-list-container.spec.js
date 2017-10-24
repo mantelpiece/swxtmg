@@ -14,18 +14,18 @@ test('should be a section', t => {
 });
 
 test('should have a search bar', t => {
-  t.is(component.find('.upgrade-search').exists(), true);
-});
-
-test('should set a searchPhrase state property', t => {
-  const searchBarInput = component.find('#upgradeSearchBar');
-  searchBarInput.prop('onChange')({ target: { value: 'search' }});
-  component.update();
-  t.is(component.state('searchPhrase'), 'search');
+  t.is(component.find('SearchBar').exists(), true);
 });
 
 test('should render an Upgrades list', t => {
   t.is(component.find('UpgradeList').exists(), true);
+});
+
+test('should set a searchPhrase state property', t => {
+  const searchBarInput = component.find('SearchBar');
+  searchBarInput.prop('onChange')({ target: { value: 'search' }});
+  component.update();
+  t.is(component.state('searchPhrase'), 'search');
 });
 
 test('should pass an array of upgrades to the Upgrades list', t => {
@@ -36,15 +36,14 @@ test('should pass an array of upgrades to the Upgrades list', t => {
 });
 
 test('should filter the passed upgrades based on the search phrase', t => {
-  const searchBar = component.find('#upgradeSearchBar');
   component.setProps({
     allUpgrades: [
       { keywords: ['yes'], name: 'yes' },
       { keywords: ['no'], name: 'no'}
     ]
   });
-  searchBar.prop('onChange')({ target: { value: 'yes' }});
-  component.update();
+  component.setState({ searchPhrase: 'yes' });
+
   const upgradeList = component.find('UpgradeList');
   t.is(upgradeList.prop('upgrades').length, 1);
   t.is(upgradeList.prop('upgrades')[0].name, 'yes');
@@ -65,7 +64,7 @@ test('changing the searchPhrase should clear the selected upgrade', t => {
   component.setProps({allUpgrades: [ upgrade ]});
   component.setState({selectedUpgrade: upgrade});
   t.is(component.find('UpgradeCard').exists(), true);
-  const searchBar = component.find('#upgradeSearchBar');
+  const searchBar = component.find('SearchBar');
   searchBar.prop('onChange')({ target: { value: 'should not match' }});
   t.is(component.find('UpgradeCard').exists(), false);
 });
@@ -75,7 +74,7 @@ test('changing the searchPhrase should not clear the selected upgrade if it matc
   component.setProps({allUpgrades: [ upgrade ]});
   component.setState({selectedUpgrade: upgrade});
   t.is(component.find('UpgradeCard').exists(), true);
-  const searchBar = component.find('#upgradeSearchBar');
+  const searchBar = component.find('SearchBar');
   searchBar.prop('onChange')({ target: { value: 'some-id' }});
   t.is(component.find('UpgradeCard').exists(), true);
   t.is(component.state().selectedUpgrade, upgrade);
@@ -88,7 +87,7 @@ test('changing the searchPhrase should select a card if it is the only matching 
     {id: 'some-id3', keywords: ['banana', 'shared']}
   ];
   component.setProps({allUpgrades: upgrades});
-  const searchBar = component.find('#upgradeSearchBar');
+  const searchBar = component.find('SearchBar');
   searchBar.prop('onChange')({ target: { value: 'shared' }});
   t.is(component.state().selectedUpgrade, null);
   searchBar.prop('onChange')({ target: { value: 'hello' }});
