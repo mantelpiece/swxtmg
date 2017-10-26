@@ -68,7 +68,7 @@ export default class UpgradesPage extends Component {
   render() {
     return (
       <section className='mdl-grid'>
-        <div className='mdl-cell--12-col'>
+        <div className='mdl-cell mdl-cell--12-col'>
           <SearchBar onChange={this.handleSearchBarChange} />
         </div>
 
@@ -76,7 +76,7 @@ export default class UpgradesPage extends Component {
           <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
                        selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
         </div>
-        <div className='mdl-cell'>
+        <div className='mdl-cell mdl-cell--6-col'>
           {this.renderCardDetailView()}
         </div>
       </section>

@@ -93,7 +93,7 @@ export default class SearchBar extends React.Component {
       <div className="upgrade-search">
         <form action="#">
           <div className="mdl-grid">
-            <div className="mdl-cell--12-col">
+            <div className="mdl-cell mdl-cell--12-col">
               <div className="mdl-textfield mdl-js-textfield">
                 <input className="mdl-textfield__input"
                        type="text"
@@ -103,7 +103,7 @@ export default class SearchBar extends React.Component {
               </div>
             </div>
 
-            <div className="mdl-cell--12-col">
+            <div className="mdl-cell mdl-cell--12-col">
               <div className='category-selector'>{this.renderCategorySelector()}</div>
             </div>
           </div>
