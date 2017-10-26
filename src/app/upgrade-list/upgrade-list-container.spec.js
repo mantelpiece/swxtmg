@@ -21,25 +21,11 @@ test('should render an Upgrades list', t => {
   t.is(component.find('UpgradeList').exists(), true);
 });
 
-test('should pass an array of upgrades to the Upgrades list', t => {
+test('should pass an array of shown upgrades to the Upgrades list', t => {
   const upgrades = [];
-  component.setProps({ allUpgrades: upgrades });
+  component.setState({ shownUpgrades: upgrades });
   const upgradeList = component.find('UpgradeList');
   t.is(upgradeList.prop('upgrades'), upgrades);
-});
-
-test('should filter the passed upgrades based on the search phrase', t => {
-  component.setProps({
-    allUpgrades: [
-      { keywords: ['yes'], name: 'yes' },
-      { keywords: ['no'], name: 'no'}
-    ]
-  });
-  component.setState({ searchPhrase: 'yes' });
-
-  const upgradeList = component.find('UpgradeList');
-  t.is(upgradeList.prop('upgrades').length, 1);
-  t.is(upgradeList.prop('upgrades')[0].name, 'yes');
 });
 
 test('should not render a UpgradeCard detail view when an upgrade is not selected', t => {
@@ -52,7 +38,7 @@ test('should render a UpgradeCard when an upgrade is selected', t => {
   t.is(component.find('UpgradeCard').exists(), true);
 });
 
-test('changing the searchPhrase should clear the selected upgrade', t => {
+test('changing the searchPhrase should clear the selected upgrade if it does not match', t => {
   const upgrade = {id: 'some-id', keywords: ['some-id']};
   component.setProps({allUpgrades: [ upgrade ]});
   component.setState({selectedUpgrade: upgrade});

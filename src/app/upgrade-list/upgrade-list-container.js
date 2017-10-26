@@ -10,8 +10,11 @@ export default class UpgradesPage extends Component {
 
   initialState() {
     return {
-      searchPhrase: '',
-      shownCategories: [],
+      searchParams: {
+        searchPhrase: '',
+        shownCategories: [],
+      },
+      shownUpgrades: this.props.allUpgrades,
       selectedUpgrade: null
     };
   }
@@ -28,23 +31,25 @@ export default class UpgradesPage extends Component {
   }
 
   handleSearchBarChange(searchParams) {
-    this.setState({ searchParams });
-
     const searchPhrase = searchParams.searchPhrase;
-    const currentlySelectedUpgrade = this.state.selectedUpgrade;
+    const shownUpgrades = filterUpgrades(this.props.allUpgrades, searchPhrase);
+    let selectedUpgrade = this.state.selectedUpgrade;
 
-    if (currentlySelectedUpgrade) {
-      // If something is selected, de-select it if doesn't match.
-      if (filterUpgrades([ this.state.selectedUpgrade ], searchPhrase).length === 0) {
-        this.handleSelectUpgrade(null);
-      }
+    if (shownUpgrades.length <= 1) {
+      // If only one upgrade matches the search (or none) select that upgrade.
+      selectedUpgrade = shownUpgrades[0] || null;
     } else {
-      // If nothing is selected, and there is only one match select it.
-      const filteredUpgrades = filterUpgrades(this.props.allUpgrades, searchPhrase);
-      if (filteredUpgrades.length === 1) {
-        this.handleSelectUpgrade(filteredUpgrades[0].id);
+      // If multiple upgrades match the search, deselect the existing selection
+      // if it does _not_ match.
+      if (selectedUpgrade) {
+        const selectedUpgradeShown = shownUpgrades.find((shownUpgrade) => {
+          return shownUpgrade.id === selectedUpgrade.id;
+        });
+        selectedUpgrade = selectedUpgradeShown;
       }
     }
+
+    this.setState({ searchParams, selectedUpgrade, shownUpgrades });
   }
 
   handleSelectUpgrade(id) {
@@ -72,8 +77,8 @@ export default class UpgradesPage extends Component {
           <SearchBar onChange={this.handleSearchBarChange} />
         </div>
 
-        <div className='mdl-cell--6-col'>
-          <UpgradeList upgrades={filterUpgrades(this.props.allUpgrades, this.state.searchPhrase)}
+        <div className='mdl-cell mdl-cell--6-col'>
+          <UpgradeList upgrades={this.state.shownUpgrades}
                        selectUpgradeFn={this.handleSelectUpgrade.bind(this)}/>
         </div>
         <div className='mdl-cell mdl-cell--6-col'>
