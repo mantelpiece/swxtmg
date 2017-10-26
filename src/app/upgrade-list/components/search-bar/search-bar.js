@@ -37,12 +37,35 @@ export default class SearchBar extends React.Component {
     super();
 
     this.state = this.initialState();
+    this.emitSearchParameters = this.emitSearchParameters.bind(this);
+    this.handleSelectCategory = this.handleSelectCategory.bind(this);
+    this.handleSearchPhraseChange = this.handleSearchPhraseChange.bind(this);
   }
 
+  /**
+   * Converts the current search bar state to a SearchParams object an emits it to the parent
+   * component.
+   */
+  emitSearchParameters() {
+    const params = {
+      searchPhrase: this.state.searchPhrase,
+      selectedCategories: Categories.filter((category) => this.state.categories[category])
+    };
+    this.props.onChange(params);
+  }
+
+  /**
+   * Handles toggling of a category to include/exclude from the search.
+   */
   handleSelectCategory(category) {
     const categories = { ...this.state.categories };
     categories[category] = !this.state.categories[category];
-    this.setState({ categories }); 
+    this.setState({ categories }, this.emitSearchParameters);
+  }
+
+  handleSearchPhraseChange(event) {
+    const searchPhrase = event.target.value;
+    this.setState({ searchPhrase }, this.emitSearchParameters);
   }
 
   renderCategoryIcon(category) {
@@ -75,7 +98,7 @@ export default class SearchBar extends React.Component {
                 <input className="mdl-textfield__input"
                        type="text"
                        id="upgradeSearchBar"
-                       onChange={this.props.onChange}
+                       onChange={this.handleSearchPhraseChange}
                        placeholder="Search upgrades" />
               </div>
             </div>
