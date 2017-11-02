@@ -15,10 +15,18 @@ export const upgrades: Upgrade[] = [{
   cost: '1'
 }];
 
+let searchParams = {};
+
 beforeEach(() => {
   upgrades.forEach((upgrade: Upgrade): void => {
     upgrade.keywords = generateKeywords(upgrade.name);
   });
+
+  searchParams = {
+    searchPhrase: '',
+    categories: {
+    }
+  };
 });
 
 test('getAllUpgrades should return some upgrades', t => {
@@ -27,6 +35,10 @@ test('getAllUpgrades should return some upgrades', t => {
 
 test('filterUpgrades should return everything given an empty string', t => {
   t.is(filterUpgrades(upgrades, ''), upgrades);
+});
+
+test('filterUpgrades should also accept a search params object', t => {
+  t.is(filterUpgrades(upgrades, searchParams), upgrades);
 });
 
 test('filterUpgrades should return an array of upgrades whose name matches the query - single word', t => {

@@ -35,7 +35,8 @@ test('clicking on a category should call onChange', t => {
   const spy = Sinon.spy();
   component.setProps({ onChange: spy });
   const categoryChip = component.find('.mdl-chip').first();
+  const isActive = categoryChip.hasClass('active');
   categoryChip.simulate('click');
   t.is(spy.callCount, 1);
-  t.is(spy.firstCall.args[0].selectedCategories.indexOf(categoryChip.text()), -1);
+  t.is(spy.firstCall.args[0].selectedCategories[categoryChip.text()], !isActive);
 });

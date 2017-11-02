@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Categories = [ 'Elite', 'Modification', 'Title', 'Astromech', 'Bomb', 'Cannon', 'Crew', 'Illicit',
-  'Missile', 'Salvaged Astromech', 'System', 'Tech', 'Torpedo', 'Turret', 'Cargo', 'Hardpoint', 'Team'];
+import { UpgradeCategories as Categories } from '../../../services/upgrades';
 
 import './styles.css';
 
@@ -49,7 +48,7 @@ export default class SearchBar extends React.Component {
   emitSearchParameters() {
     const params = {
       searchPhrase: this.state.searchPhrase,
-      selectedCategories: Categories.filter((category) => this.state.categories[category])
+      selectedCategories: { ...this.state.categories }
     };
     this.props.onChange(params);
   }
