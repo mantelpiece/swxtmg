@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import UpgradeCategoryRow from './upgrade-category-row';
 import UpgradeRow from './upgrade-row';
+import NoResultsRow from './no-results-row';
 import { Upgrade } from '../../services/upgrades';
 
 import './styles.css';
@@ -23,6 +24,9 @@ export default class UpgradeList extends Component {
       rows.push(<UpgradeRow key={upgrade.id} {...upgrade} handleOnClick={this.props.selectUpgradeFn} />);
       lastCategory = upgrade.category;
     });
+    if (rows.length === 0) {
+      rows.push(<NoResultsRow />);
+    }
 
     return (
       <table className='upgrade-table mdl-data-table mdl-js-data-table'>
