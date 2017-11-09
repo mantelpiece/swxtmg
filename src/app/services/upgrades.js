@@ -17,7 +17,7 @@ export const UpgradeCategories = [ 'Elite', 'Modification', 'Title', 'Astromech'
   'Missile', 'Salvaged Astromech', 'System', 'Tech', 'Torpedo', 'Turret', 'Cargo', 'Hardpoint', 'Team'];
 
 upgrades.forEach(card => {
-  card.keywords = generateKeywords(card.name);
+  card.keywords = generateKeywords([ card.name, card.text ]);
 });
 
 export function getAllUpgrades() {

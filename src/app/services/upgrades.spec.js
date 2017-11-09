@@ -17,7 +17,7 @@ export const upgrades: Upgrade[] = [{
 
 beforeEach(() => {
   upgrades.forEach((upgrade: Upgrade): void => {
-    upgrade.keywords = generateKeywords(upgrade.name);
+    upgrade.keywords = generateKeywords([ upgrade.name ]);
   });
 });
 
