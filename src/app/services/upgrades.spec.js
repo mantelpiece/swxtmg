@@ -38,11 +38,11 @@ test('filterUpgrades should return everything given an empty string and no categ
 });
 
 test('filterUpgrades should return an array of upgrades whose name matches the query - single word', t => {
-  t.deepEqual(filterUpgrades(upgrades, { phrase: 'Veteran' }), [ upgrades[1] ]);
+  t.deepEqual(filterUpgrades(upgrades, { phrase: 'Autothrusters' }), [ upgrades[1] ]);
 });
 
 test('filterUpgrades should be case insensitive', t => {
-  t.deepEqual(filterUpgrades(upgrades, { phrase: 'vEterAn' }), [ upgrades[1] ]);
+  t.deepEqual(filterUpgrades(upgrades, { phrase: 'auTothRusTers' }), [ upgrades[1] ]);
 });
 
 test('filterUpgrades should use a fuzzy matching', t => {

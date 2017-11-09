@@ -37,17 +37,16 @@ export function filterUpgrades(upgrades, params) {
   }
 
   let filteredByCategory;
-  if (params.categories) {
-    // if (Object.keys(query.categories).length === 0) {
-      // return [];
-    // }
+  if (!params.categories) {
+    filteredByCategory = upgrades.slice();
+  } else {
+    if (Object.keys(params.categories).length === 0) {
+      filteredByCategory = upgrades.slice();
+    }
 
     filteredByCategory = upgrades.filter((upgrade) => {
       return params.categories[upgrade.category];
     });
-
-  } else {
-    filteredByCategory = upgrades.slice();
   }
 
   const searchPhrase = params.phrase;
