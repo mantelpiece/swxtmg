@@ -20,26 +20,43 @@ upgrades.forEach(card => {
   card.keywords = generateKeywords(card.name);
 });
 
-export function getAllUpgrades(): Upgrade[] {
+export function getAllUpgrades() {
   return upgrades;
 }
 
-export function filterUpgrades(upgrades: Upgrade[], query: string): Upgrade[] {
-  let searchPhrase = query;
-  if (!(typeof query === 'string')) {
-    searchPhrase = query.searchPhrase;
+export function filterUpgrades(upgrades, params) {
+  if (typeof params === 'string') {
+    throw new Error('filterUpgrades must be called with a search parameter object');
   }
-
-  if (!searchPhrase || searchPhrase === '') {
-    return upgrades;
-  }
-
   if (!upgrades) {
     throw new Error('No upgrades passed to filterUpgrades');
   }
 
+  if (params.categories && params.categories.length === 0) {
+    return [];
+  }
+
+  let filteredByCategory;
+  if (params.categories) {
+    // if (Object.keys(query.categories).length === 0) {
+      // return [];
+    // }
+
+    filteredByCategory = upgrades.filter((upgrade) => {
+      return params.categories[upgrade.category];
+    });
+
+  } else {
+    filteredByCategory = upgrades.slice();
+  }
+
+  const searchPhrase = params.phrase;
+  if (!searchPhrase || searchPhrase === '') {
+    return filteredByCategory;
+  }
+
   const searchPhraseTerms = searchPhrase.toLowerCase().split(/\s+/);
-  return upgrades.filter((upgrade: Upgrade): boolean => {
+  return filteredByCategory.filter((upgrade: Upgrade): boolean => {
     return searchPhraseTerms.every((term: string): boolean => {
       return upgrade.keywords.some((keyword: string): boolean => {
         return keyword.indexOf(term) >= 0;

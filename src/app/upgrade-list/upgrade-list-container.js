@@ -31,12 +31,9 @@ export default class UpgradesPage extends Component {
   }
 
   handleSearchBarChange(searchParams) {
-    const searchPhrase = searchParams.searchPhrase;
     let selectedUpgrade = this.state.selectedUpgrade;
 
-    // TODO: Handle categories in filter.
-    const shownUpgrades = filterUpgrades(this.props.allUpgrades, searchPhrase);
-
+    const shownUpgrades = filterUpgrades(this.props.allUpgrades, searchParams);
     if (shownUpgrades.length <= 1) {
       // If only one upgrade matches the search (or none) select that upgrade.
       selectedUpgrade = shownUpgrades[0] || null;

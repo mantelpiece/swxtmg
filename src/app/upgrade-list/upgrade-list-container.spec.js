@@ -44,7 +44,7 @@ test('changing the searchPhrase should clear the selected upgrade if it does not
   component.setState({selectedUpgrade: upgrade});
   t.is(component.find('UpgradeCard').exists(), true);
   const searchBar = component.find('SearchBar');
-  searchBar.prop('onChange')({ searchPhrase: 'should not match' });
+  searchBar.prop('onChange')({ phrase: 'should not match' });
   t.is(component.find('UpgradeCard').exists(), false);
 });
 
@@ -54,7 +54,7 @@ test('changing the searchPhrase should not clear the selected upgrade if it matc
   component.setState({selectedUpgrade: upgrade});
   t.is(component.find('UpgradeCard').exists(), true);
   const searchBar = component.find('SearchBar');
-  searchBar.prop('onChange')({ searchPhrase: 'some-id' });
+  searchBar.prop('onChange')({ phrase: 'some-id' });
   t.is(component.find('UpgradeCard').exists(), true);
   t.is(component.state().selectedUpgrade, upgrade);
 });
@@ -67,8 +67,8 @@ test('changing the searchPhrase should select a card if it is the only matching 
   ];
   component.setProps({allUpgrades: upgrades});
   const searchBar = component.find('SearchBar');
-  searchBar.prop('onChange')({ searchPhrase: 'shared' });
+  searchBar.prop('onChange')({ phrase: 'shared' });
   t.is(component.state().selectedUpgrade, null);
-  searchBar.prop('onChange')({ searchPhrase: 'hello' });
+  searchBar.prop('onChange')({ phrase: 'hello' });
   t.is(component.state().selectedUpgrade, upgrades[0]);
 });

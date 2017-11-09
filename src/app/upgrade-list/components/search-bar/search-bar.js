@@ -47,8 +47,8 @@ export default class SearchBar extends React.Component {
    */
   emitSearchParameters() {
     const params = {
-      searchPhrase: this.state.searchPhrase,
-      selectedCategories: { ...this.state.categories }
+      phrase: this.state.searchPhrase,
+      categories: { ...this.state.categories }
     };
     this.props.onChange(params);
   }

@@ -19,7 +19,7 @@ test('should call the onChange when the search phrase changes', t => {
   component.setProps({ onChange: spy });
   component.find('#upgradeSearchBar').simulate('change', { target: { value: 'hello' }});
   t.is(spy.callCount, 1);
-  t.is(spy.firstCall.args[0].searchPhrase, 'hello');
+  t.is(spy.firstCall.args[0].phrase, 'hello');
 });
 
 test('clicking on a category should toggle its state', t => {
@@ -38,5 +38,5 @@ test('clicking on a category should call onChange', t => {
   const isActive = categoryChip.hasClass('active');
   categoryChip.simulate('click');
   t.is(spy.callCount, 1);
-  t.is(spy.firstCall.args[0].selectedCategories[categoryChip.text()], !isActive);
+  t.is(spy.firstCall.args[0].categories[categoryChip.text()], !isActive);
 });
