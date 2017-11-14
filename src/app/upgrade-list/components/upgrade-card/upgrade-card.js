@@ -32,9 +32,15 @@ export default class UpgradeCard extends Component {
     return (<div className='mdl-cell mdl-cell--12-col upgrade-text'>{contents}</div>);
   }
 
+  renderSlots() {
+    const category = this.props.card.category.toLowerCase().replace(' ', '');
+    const iconName = `xwing-miniatures-font xwing-miniatures-font-${category}`;
+    return (<i className={iconName}></i>);
+  }
+
   render() {
     return (
-      <div className='mdl-card mdl-shadow--2dp'>
+      <div className='mdl-card mdl-shadow--2dp upgrade-card'>
         <div className='mdl-card__title upgrade-card__title'>
           <h4 className='mdl-card__title-text upgrade-name'>{this.props.card.name}</h4>
         </div>
@@ -53,8 +59,9 @@ export default class UpgradeCard extends Component {
           <br />
 
           <div className='mdl-grid mdl-grid--no-spacing'>
-            <div className='mdl-cell'></div>
+            <div className='mdl-cell'>{this.renderSlots()}</div>
           </div>
+
         </div>
 
         <div className='mdl-card__menu'>

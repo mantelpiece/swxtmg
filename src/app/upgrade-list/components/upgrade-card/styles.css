@@ -7,6 +7,15 @@
   font-size: 1.2rem;
 }
 
+.upgrade-restrictions {
+  text-align: center;
+  font-style: italic;
+}
+
 .upgrade-cost {
   text-align: right;
+}
+
+.upgrade-card p:last-child {
+  margin-bottom: 0;
 }

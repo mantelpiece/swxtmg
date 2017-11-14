@@ -16,13 +16,6 @@ test('generateKeywords should lowercase words', t => {
   t.deepEqual(actual, expected);
 });
 
-test('generateKeywords should drop words shorter than four characters', t => {
-  const phrase = 'yes no name';
-  const actual = generateKeywords([ phrase ]);
-  const expected = ['name'];
-  t.deepEqual(actual, expected);
-});
-
 test('generateKeywords should drop duplicate words', t => {
   const phrase = 'name frank name strange';
   const actual = generateKeywords([ phrase ]);

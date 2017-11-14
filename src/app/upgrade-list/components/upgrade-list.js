@@ -25,7 +25,7 @@ export default class UpgradeList extends Component {
       lastCategory = upgrade.category;
     });
     if (rows.length === 0) {
-      rows.push(<NoResultsRow />);
+      rows.push(<NoResultsRow key='no-results-row' />);
     }
 
     return (

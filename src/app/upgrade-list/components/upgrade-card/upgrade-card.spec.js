@@ -36,13 +36,13 @@ test('should have some contents', t => {
 });
 
 test('should replace the Action header', t => {
-  component.setProps({card: { text: 'Action: Do the thing' }});
+  component.setProps({card: { category: 'Modification', text: 'Action: Do the thing' }});
   const upgradeText = component.find('.upgrade-text').childAt(0);
   t.is(upgradeText.html(), '<p><b>Action:</b> Do the thing</p>');
 });
 
 test('should work with Attack (target lock) headers', t => {
-  component.setProps({card: { text: 'Attack (target lock): Hit the thing' }});
+  component.setProps({card: { category: 'Missile', text: 'Attack (target lock): Hit the thing' }});
   const upgradeText = component.find('.upgrade-text').childAt(0);
   t.is(upgradeText.html(), '<p><b>Attack (target lock):</b> Hit the thing</p>');
 });
