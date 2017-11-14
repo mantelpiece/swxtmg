@@ -4,9 +4,10 @@ export const generateKeywords = (phrases) => {
   phrases.forEach(phrase => {
     phrase
       .split(/\s+/)
-      .filter((word: string): boolean => {
-        return word.length > 3;
-      })
+      // I'm not convinced this is worthwhile.
+      // .filter((word: string): boolean => {
+        // return word.length > 2;
+      // })
       .forEach((word: string): void => {
         const lowerCaseWord =  word.toLowerCase();
         wordMap[lowerCaseWord] = true;

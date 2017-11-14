@@ -40,3 +40,9 @@ test('should replace the Action header', t => {
   const upgradeText = component.find('.upgrade-text').childAt(0);
   t.is(upgradeText.html(), '<p><b>Action:</b> Do the thing</p>');
 });
+
+test('should work with Attack (target lock) headers', t => {
+  component.setProps({card: { text: 'Attack (target lock): Hit the thing' }});
+  const upgradeText = component.find('.upgrade-text').childAt(0);
+  t.is(upgradeText.html(), '<p><b>Attack (target lock):</b> Hit the thing</p>');
+});

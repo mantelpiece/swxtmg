@@ -10,19 +10,29 @@ export default class UpgradeCard extends Component {
     super();
   }
 
+  renderRestrictions() {
+    return (<div className='mdl-cell mdl-cell--12-col upgrade-restrictions'>{this.props.card.restrictions}</div>);
+  }
+
   renderDescription() {
+    // TODO: Replace words with icons?
     const text = this.props.card.text;
-    const actionHeaderRegex = /^Action:/i;
-    if (actionHeaderRegex.test(text)) {
+    const actionHeaderRegex = /^((action|energy|attack)[^:]*):/i;
+    const matches = text.match(actionHeaderRegex);
+    const actionHeader = matches && matches[1];
+
+    let contents;
+    if (actionHeader) {
       const modifiedText = text.replace(actionHeaderRegex, '');
-      return (<p><b>Action:</b>{modifiedText}</p>);
+      contents = (<p><b>{actionHeader}:</b>{modifiedText}</p>);
     } else {
-      return (<p>{this.props.card.text}</p>);
+      contents = (<p>{this.props.card.text}</p>);
     }
+
+    return (<div className='mdl-cell mdl-cell--12-col upgrade-text'>{contents}</div>);
   }
 
   render() {
-    const renderedDescription = this.renderDescription();
     return (
       <div className='mdl-card mdl-shadow--2dp'>
         <div className='mdl-card__title upgrade-card__title'>
@@ -34,9 +44,16 @@ export default class UpgradeCard extends Component {
             <div className='mdl-cell mdl-cell--6-col upgrade-category'>{this.props.card.category}</div>
             <div className='mdl-cell mdl-cell--6-col upgrade-cost'>Cost: {this.props.card.cost}</div>
           </div>
+
+          <div className='mdl-grid'>
+            { this.props.card.restrictions !== '' ? this.renderRestrictions() : '' }
+            { this.props.card.description !== '' ? this.renderDescription() : '' }
+          </div>
+
           <br />
-          <div className='mdl-grid--no-spacing'>
-            <div className='upgrade-text'>{renderedDescription}</div>
+
+          <div className='mdl-grid mdl-grid--no-spacing'>
+            <div className='mdl-cell'></div>
           </div>
         </div>
 
