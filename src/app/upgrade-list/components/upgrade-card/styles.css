@@ -19,3 +19,7 @@
 .upgrade-card p:last-child {
   margin-bottom: 0;
 }
+
+.upgrade-card .upgrade-slot {
+  padding-right: 5px;
+}

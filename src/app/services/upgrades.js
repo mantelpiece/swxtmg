@@ -1,5 +1,4 @@
-// File excluded from repository temporarily
-import { upgrades } from './upgrades-data';
+import upgrades from './upgrades-data.json';
 
 import { generateKeywords } from '../lib/textUtils';
 

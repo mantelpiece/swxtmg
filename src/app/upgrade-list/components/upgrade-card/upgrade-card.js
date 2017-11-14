@@ -33,9 +33,15 @@ export default class UpgradeCard extends Component {
   }
 
   renderSlots() {
-    const category = this.props.card.category.toLowerCase().replace(' ', '');
-    const iconName = `xwing-miniatures-font xwing-miniatures-font-${category}`;
-    return (<i className={iconName}></i>);
+    const slots = this.props.card.slots.map((slotName, index) => {
+      const classes = `upgrade-slot xwing-miniatures-font xwing-miniatures-font-${slotName}`;
+      return (<i key={slotName + index} className={classes}></i>);
+    });
+    return (
+      <span className='upgrade-slots'>
+        {slots}
+      </span>
+    );
   }
 
   render() {
