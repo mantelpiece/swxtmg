@@ -1,3 +1,7 @@
+.category-selector {
+  user-select: none;
+}
+
 .category-selector .mdl-chip {
   margin-right: 5px;
 }

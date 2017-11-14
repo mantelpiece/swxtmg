@@ -62,6 +62,15 @@ export default class SearchBar extends React.Component {
     this.setState({ categories }, this.emitSearchParameters);
   }
 
+  handleDoubleClick(category) {
+    const categories = { ...this.state.categories };
+    Categories.forEach((name) => {
+      categories[name] = false;
+    });
+    categories[category] = true;
+    this.setState({ categories }, this.emitSearchParameters);
+  }
+
   handleSearchPhraseChange(event) {
     const searchPhrase = event.target.value;
     this.setState({ searchPhrase }, this.emitSearchParameters);
@@ -79,7 +88,8 @@ export default class SearchBar extends React.Component {
         <span key={category}
               id={'search_category_' + category}
               className={'mdl-chip mdl-chip--contact clickable ' + (this.state.categories[category] ? ' active' : '')}
-              onClick={this.handleSelectCategory.bind(this, category)}>
+              onClick={this.handleSelectCategory.bind(this, category)}
+              onDoubleClick={this.handleDoubleClick.bind(this, category)}>
           <span className='mdl-chip__contact mdl-color--white'>{this.renderCategoryIcon(category)}</span>
           <span className='mdl-chip__text'>{category}</span>
         </span>

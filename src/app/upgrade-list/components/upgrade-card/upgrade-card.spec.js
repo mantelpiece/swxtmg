@@ -5,15 +5,15 @@ import React from 'react';
 import UpgradeCard from './upgrade-card';
 
 let component;
-
-const upgradeCard = {
-  name: 'name',
-  text: 'text',
-  category: 'category',
-  cost: '0'
-};
-
+let upgradeCard;
 test.beforeEach(() => {
+  upgradeCard = {
+    name: 'name',
+    text: 'text',
+    category: 'category',
+    cost: '0',
+    slots: [ 'slot1' ]
+  };
   component = shallow(<UpgradeCard card={upgradeCard} closeCardFn={() => {}}/>);
 });
 
@@ -36,13 +36,15 @@ test('should have some contents', t => {
 });
 
 test('should replace the Action header', t => {
-  component.setProps({card: { category: 'Modification', text: 'Action: Do the thing' }});
+  upgradeCard.text = 'Action: Do the thing';
+  component.setProps({card: upgradeCard});
   const upgradeText = component.find('.upgrade-text').childAt(0);
   t.is(upgradeText.html(), '<p><b>Action:</b> Do the thing</p>');
 });
 
 test('should work with Attack (target lock) headers', t => {
-  component.setProps({card: { category: 'Missile', text: 'Attack (target lock): Hit the thing' }});
+  upgradeCard.text = 'Attack (target lock): Hit the thing';
+  component.setProps({card: upgradeCard});
   const upgradeText = component.find('.upgrade-text').childAt(0);
   t.is(upgradeText.html(), '<p><b>Attack (target lock):</b> Hit the thing</p>');
 });
